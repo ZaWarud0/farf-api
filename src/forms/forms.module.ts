@@ -5,6 +5,7 @@ import { FormsController } from './forms.controller';
 import { FormsSchema } from './forms.model';
 import { FormsService } from './forms.service';
 
+// Registering forms model for DI
 @Module({
     imports: [MongooseModule.forFeature([{name: 'Form', schema: FormsSchema}])],
     controllers: [FormsController],

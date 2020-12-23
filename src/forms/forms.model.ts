@@ -1,6 +1,6 @@
 import { Schema, Document } from 'mongoose';
 
-
+// Defining the mongoose schema for the Form model
 export const FormsSchema = new Schema({
     date: { type: Date, required: true },
     division: { type: String, required: true },
@@ -22,6 +22,7 @@ type FormData = {
     assetCode: string
 }
 
+// Defining the Form model interface
 export interface Form extends Document {
     id: string;
     date: Date;

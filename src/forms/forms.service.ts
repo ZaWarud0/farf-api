@@ -7,16 +7,30 @@ import { Form } from './forms.model';
 @Injectable()
 export class FormsService {
 
+    // Receiving the injected forms model when service initiated
     constructor(@InjectModel('Form') private readonly formModel: Model<Form>) { }
-
+    
+     /**
+     * Returns all forms from db
+     * @returns an array of Forms
+     */
     async getForms() {
         return await this.formModel.find().exec();
     }
 
+    /**
+     * Returns the requistion no of the lastest form (sorted by date)
+     * @returns an object with key reqNo
+     */
     async getLatestReqNo() {
         return { reqNo: (await this.formModel.findOne({}, {}, { sort: { 'date' : -1 } }).exec()).reqNo };
     }
 
+    /**
+     * Adds form to db
+     * @param form - The form to add
+     * @returns an object of the Id of the added form
+     */
     async addForm(form: Form) {
         const newForm = new this.formModel({
             date: new Date(),
